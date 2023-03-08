@@ -1,0 +1,57 @@
+/* Set the background color of the page */
+body {
+    background-color: #F5F5F5;
+  }
+  
+  /* Set the font for the whole page */
+  body, h1, h2, h3, h4, h5, h6 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  
+  /* Add a box shadow to the header */
+  header {
+    box-shadow: 0 2px 5px rgba(0,0,0,.26);
+  }
+  
+  /* Set the style for the main content area */
+  main {
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+  }
+  
+  /* Add some padding and margin to the table */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px 0;
+    padding: 0;
+  }
+  
+  table, th, td {
+    border: 1px solid black;
+  }
+  
+  th, td {
+    padding: 10px;
+  }
+  
+  th {
+    text-align: center;
+    background-color: #F5F5F5;
+    font-weight: bold;
+  }
+  
+  td {
+    text-align: center;
+  }
+  
+  /* Set the style for the footer */
+  footer {
+    padding: 20px;
+    text-align: center;
+    background-color: #F5F5F5;
+    box-shadow: 0 2px 5px rgba(0,0,0,.26);
+  }
