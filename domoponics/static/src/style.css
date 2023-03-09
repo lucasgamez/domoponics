@@ -6,6 +6,8 @@ body {
   /* Set the font for the whole page */
   body, h1, h2, h3, h4, h5, h6 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #bbbbbb;
+    color: #60612a;
   }
   
   /* Add a box shadow to the header */
@@ -40,7 +42,7 @@ body {
   
   th {
     text-align: center;
-    background-color: #F5F5F5;
+    background-color: #747474;
     font-weight: bold;
   }
   
