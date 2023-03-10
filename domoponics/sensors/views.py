@@ -32,6 +32,8 @@ def get_plot_data(sensor):
     ax.plot(timestamps, values)
     ax.set_xlabel('Time')
     ax.set_ylabel(sensor.data_type)
+    ax.set_facecolor('#eee')
+    fig.set_facecolor('#eee')
 
     buf = io.BytesIO()
     fig.savefig(buf, format='png')

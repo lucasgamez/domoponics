@@ -3,30 +3,21 @@
 {% block title %}Sensor list{% endblock %}
 
 {% block content %}
-    <h1>Sensors</h1>
-    <div class="row">
-        <ul>
+<div class="content">
+
         {% for sensor in sensors %}
-            <li>
-                <h2>{{ sensor.location }}</h2>
-                <p>{{ sensor.description}}</p>
-                <img src="data:image/png;base64,{{sensor.image}}">'
-                <table>
-                    <tr>
-                        <td>Date</td>
-                        <td>{{ sensor.data_type}}</td>
-                    </tr>
-                    {% for data in sensor.sensor_data %}
-                    <tr>
-                        <td>{{ data.timestamp}}</td>
-                        <td>{{ data.data}}</td>
-                    </tr>
+            <div class="block block-sensor">
+                <div class="block-title">
+                    <h2>{{ sensor.location }}</h2>
+                    <p>{{ sensor.description}}</p>
+                </div>
+                <div class="block-content block-image">
+                    <img class="block-image" src="data:image/png;base64,{{sensor.image}}">
 
-                    {% endfor %}
-                </table>
+                </div>
+                
 
-            </li>
+            </div>
             {% endfor %}
-        </ul>
-    </div>
+</div>
 {% endblock %}

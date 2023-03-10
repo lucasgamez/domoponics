@@ -1,59 +1,94 @@
 /* Set the background color of the page */
-body {
-    background-color: #F5F5F5;
-  }
+
+:root{
+  --P1: #273377;
+  --P2: #3949ab;
+  --P3: #606dbb;
+  --S1: #7A7A7A;
+  --S2: #999;
+  --S3: #eee;
+}
+
+body, html {
+  margin: 0;
+  height: 100vh;
   
-  /* Set the font for the whole page */
-  body, h1, h2, h3, h4, h5, h6 {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: #bbbbbb;
-    color: #60612a;
-  }
-  
-  /* Add a box shadow to the header */
-  header {
-    box-shadow: 0 2px 5px rgba(0,0,0,.26);
-  }
-  
-  /* Set the style for the main content area */
-  main {
-    background-color: white;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
-  }
-  
-  /* Add some padding and margin to the table */
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 20px 0;
-    padding: 0;
-  }
-  
-  table, th, td {
-    border: 1px solid black;
-  }
-  
-  th, td {
-    padding: 10px;
-  }
-  
-  th {
-    text-align: center;
-    background-color: #747474;
-    font-weight: bold;
-  }
-  
-  td {
-    text-align: center;
-  }
-  
-  /* Set the style for the footer */
-  footer {
-    padding: 20px;
-    text-align: center;
-    background-color: #F5F5F5;
-    box-shadow: 0 2px 5px rgba(0,0,0,.26);
-  }
+}
+
+main{
+  height: 100%;
+}
+.main-page {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.main-menu{
+  width: 80px;
+  background-color: var(--S2);
+  color: var(--S1);
+  padding: 12px;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+.menu-button{
+  border-radius: 100%;
+  border: none;
+  fill: var(--S2);
+  background-color: var(--S1);
+  transition-duration: 0.4s;
+  width: 100%;
+}
+.menu-button svg{
+  fill: var(--S2);
+  transition-duration: 0.4s;
+
+}
+
+.menu-button:hover {
+  background-color: var(--S3); /* Green */
+  fill: #555;
+}
+.menu-button:hover svg{
+  fill: #555;
+}
+
+
+.content{
+  padding: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  background-color: #fcfcfc;
+  color: var(--S1)
+}
+
+.block{
+  padding: 8px;
+  border-radius: 8px;
+  background-color: var(--S3);
+  height: fit-content;
+  box-shadow: 4px 4px 8px 4px var(--S1);
+}
+
+.block-sensor{
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.block-image{
+  /*border-radius: 8px;*/
+}
+
+.block-title{
+  padding: 8px;
+}
+
+
+
