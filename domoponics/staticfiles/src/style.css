@@ -76,18 +76,30 @@ main{
 }
 
 .block-sensor{
-  padding: 0px;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
+
 
 .block-image{
   /*border-radius: 8px;*/
 }
 
 .block-title{
-  padding: 8px;
+
+  text-decoration: none;
+  color: var(--S1);
+  font-size: large;
+  
+}
+
+.block-title a{
+
+  text-decoration: none;
+  color: var(--S1);
+  font-size: large;
+  
 }
 
 

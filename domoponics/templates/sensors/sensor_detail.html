@@ -1,18 +1,19 @@
 {% extends 'base.html' %}
 
-{% block title %}Sensor list{% endblock %}
+{% block title %}Sensor{% endblock %}
 
 {% block content %}
 <div class="content">
-        {% for sensor in sensors %}
+
             <div class="block block-sensor">
                 <div class="block-title">
-                    <a href="{% url 'sensor_detail' sensor.pk %}">{{ sensor.location }}</a>
+                    {{ sensor.location }}
                 </div>
+                <div class="block-content">{{ sensor.description}}</div>
+                <div class="block-content-">ID: {{sensor.pk}}</div>
                 <div class="block-content block-image">
                     <img class="block-image" src="data:image/png;base64,{{sensor.image}}">
                 </div>
             </div>
-            {% endfor %}
 </div>
 {% endblock %}

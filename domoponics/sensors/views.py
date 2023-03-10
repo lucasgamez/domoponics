@@ -8,7 +8,11 @@ from django.utils.html import format_html
 
 import base64
 
-def sensor_list(request):
+####################################
+## Views for sensors
+
+# List all sensors
+def view_sensor_list(request):
     sensors_id = Sensor.objects.values_list('pk', flat=True)
     sensors = []
     for s in sensors_id:
@@ -17,13 +21,29 @@ def sensor_list(request):
     context = {'sensors' : sensors}
     return render(request, 'sensors/sensor_list.html', context)
 
+# Prompt details of one sensor
+# pk (int): primary key of sensor
+def view_sensor_detail(request, pk):
+    context = {'sensor' : get_sensor_details(pk)}
+    return render(request, 'sensors/sensor_detail.html', context)
 
+# Form to add sensor
+def view_sensor_add(request):
+    render(request, 'sensor/sensor_add.html', {})
+
+########################################
+## Utils functions
+
+# Get detail of sensor from database
+# sensor_id(int) : primary key of the sensor 
 def get_sensor_details(sensor_id):
     sensor = Sensor.objects.get(pk=sensor_id)
     sensor.sensor_data = sensor.sensordata_set.order_by('-timestamp')[:10]
     get_plot_data(sensor)
     return sensor
 
+# Return figure of data from a specific sensor, voir chart js
+# sensor(request): return value of a get function for the dataset
 def get_plot_data(sensor):
     timestamps = [str(d.timestamp) for d in sensor.sensor_data]
     values = [d.data for d in sensor.sensor_data]
@@ -43,15 +63,4 @@ def get_plot_data(sensor):
     sensor.image = graph.decode('utf-8')
     buf.close()
 
-    #data_uri = buf.read().encode('base64').replace('\n', '')
-    #sensor.image = format_html('<img src="data:image/png;base64,{}">', data_uri)
-
-
-    '''canvas = FigureCanvas(fig)
-    buf = io.BytesIO()
-    canvas.print_png(buf)
-    image_data = buf.getvalue()
-    image_base64 = base64.b64encode(image_data).decode('utf-8')
-    image_uri = f"data:image/png;base64,{image_base64}"
-    sensor.image = format_html('<img src="data:image/png;base64,{}">', image_uri)'''
     
