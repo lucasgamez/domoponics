@@ -1,12 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from models.models import Sensor, SensorData
 import io
-from django.http import HttpResponse
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from django.utils.html import format_html
-
+from .forms import SensorForm
 import base64
+from django.utils import timezone
+from django.http import JsonResponse
 
 ####################################
 ## Views for sensors
@@ -29,7 +28,39 @@ def view_sensor_detail(request, pk):
 
 # Form to add sensor
 def view_sensor_add(request):
-    render(request, 'sensor/sensor_add.html', {})
+    
+    if request.method == 'POST':
+        print("post")
+        form = SensorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('sensor_list')
+    else:
+        print('Form')
+        form = SensorForm()
+    return render(request, 'sensors/sensor_add_sensor.html', {'form': form})
+
+# POST only view to add data_sensor
+def view_data_sensor_add(request):
+    if request.method == 'POST':
+        time = timezone.now()
+        sensor = Sensor.objects.get(pk=request.POST.get('sensor_id'))
+        value = float(request.POST.get('value'))
+
+        # Create a new SensorData instance
+        new_data = SensorData(data=value, sensor_id=sensor, timestamp=time)
+        new_data.save()
+        print("Response")
+        
+        return JsonResponse({'status': 'success'})
+    else:
+        return JsonResponse({'status': 'failure: no POST used'})
+
+
+
+
+
+
 
 ########################################
 ## Utils functions

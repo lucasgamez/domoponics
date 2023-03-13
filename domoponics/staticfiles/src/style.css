@@ -68,6 +68,9 @@ main{
 }
 
 .block{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   padding: 8px;
   border-radius: 8px;
   background-color: var(--S3);
@@ -75,10 +78,8 @@ main{
   box-shadow: 4px 4px 8px 4px var(--S1);
 }
 
+
 .block-sensor{
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 }
 
 
@@ -90,15 +91,16 @@ main{
 
   text-decoration: none;
   color: var(--S1);
-  font-size: large;
+  font-size: 32px;
+  font-weight: bold;
   
 }
 
 .block-title a{
 
   text-decoration: none;
-  color: var(--S1);
-  font-size: large;
+  color: var(--S1);font-size: 32px;
+  font-weight: bold;
   
 }
 

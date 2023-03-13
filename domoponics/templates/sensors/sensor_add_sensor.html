@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Sensor{% endblock %}
+
+{% block content %}
+<div class="content">
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="block block-form">
+
+                <div class="block-title">
+                    Add new sensor
+                </div>
+
+                {% for field in form %}
+                <div class="block-content">
+                    {{field.label_tag}}
+                    {{field}}
+                </div>
+                {% endfor %}
+                <div class="block-content"><button class="content-button" type="submit" value="Add sensor">Add sensor</div>
+        </div>
+    </form>
+</div>
+{% endblock %}
