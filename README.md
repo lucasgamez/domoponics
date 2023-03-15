@@ -14,6 +14,8 @@ This project need a lot of work, one of them being to properly write this ReadME
 
  # List of ideas/features/tasks to work on:
 
+## ESP/Sensor
+* Improve luminosity reading
 ## Proper ReadME
 * Improvmenet of the dataset:
 * Add location and data_type as table, not as text
