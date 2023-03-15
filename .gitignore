@@ -1,6 +1,8 @@
 #dataset
-*db.sqlite*
+*db.sqlite3*
 
+#Ignore staticfile folde
+*/staticfiles/*
 
 # Django #
 *.log
