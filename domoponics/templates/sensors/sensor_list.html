@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %}Sensor list{% endblock %}
+{% block title %}
+    Sensor list
+{% endblock %}
 
 {% block content %}
+
+{% component_js_dependencies %}
+{% component_css_dependencies %}
 <div class="content">
         {% for sensor in sensors %}
             <div class="block block-sensor">
@@ -10,7 +15,7 @@
                     <a href="{% url 'sensor_detail' sensor.pk %}">{{ sensor.location }}</a>
                 </div>
                 <div class="block-content block-image">
-                    <img class="block-image" src="data:image/png;base64,{{sensor.image}}">
+                    {% component "graph" sensor=sensor %}
                 </div>
             </div>
             {% endfor %}

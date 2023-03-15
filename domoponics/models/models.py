@@ -11,4 +11,9 @@ class SensorData(models.Model):
     data = models.FloatField()
     sensor_id = models.ForeignKey(Sensor, on_delete=models.CASCADE)
     timestamp = models.DateTimeField()
+
+    def __str__(self):
+        return "{y: '"+ str(self.timestamp.strftime('%Y-%m-%d %H:%M:%S')) +"', X:" + str(self.data) +"}"
+
+
     

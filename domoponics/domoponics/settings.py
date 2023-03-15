@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure--3n-4iva^8h__qu@*3kb(h32p5+egv&=(=hwh)!huqv%h@hz73
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "django_components",
     'models',
     'sensors',
 ]
@@ -59,13 +60,23 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         "DIRS": ["templates/"],
 
-        'APP_DIRS': True,
+        #'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            ],
+            'loaders':[(
+                'django.template.loaders.cached.Loader', [
+                    'django.template.loaders.filesystem.Loader',
+                    'django.template.loaders.app_directories.Loader',
+                    'django_components.template_loader.Loader',
+                ]
+            )],
+            'builtins': [
+                'django_components.templatetags.component_tags',
             ],
         },
     },
@@ -124,7 +135,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [BASE_DIR / "static"] #, ('node_modules', os.path.join(BASE_DIR, 'node_modules/'))]
+STATICFILES_DIRS = [
+                        BASE_DIR / "static",
+                        ('packages', os.path.join(BASE_DIR, 'packages/')),
+                        BASE_DIR / "components",
+                    ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

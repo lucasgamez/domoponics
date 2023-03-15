@@ -22,11 +22,13 @@ main{
   display: flex;
   flex-direction: row;
   height: 100%;
+  width: 100%;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .main-menu{
-  width: 80px;
+  width: 50px;
+  min-width: 50px;
   background-color: var(--S2);
   color: var(--S1);
   padding: 12px;
@@ -76,6 +78,10 @@ main{
   background-color: var(--S3);
   height: fit-content;
   box-shadow: 4px 4px 8px 4px var(--S1);
+  /*flex: 2 2 auto;*/
+  flex-basis: 100%;
+  max-width: 800px;
+  min-width: 200px;
 }
 
 
