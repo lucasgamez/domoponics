@@ -1,9 +1,10 @@
-#include <Adafruit_Sensor.h>
+//#include <Adafruit_Sensor.h>
 #include <DHT.h>
 #include <DHT_U.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
+#include <WiFiClient.h>
 /******************************************
 * Change sensor ID HERE
 * 
@@ -16,15 +17,17 @@ const String lux_sensor = "sensor_id=8";
 * PIN definition 
 * 
 **/
-#define DHTPIN D2     // Digital pin connected to the DHT sensor
+#define DHTPIN 12     // Digital pin connected to the DHT sensor
 #define DHTTYPE DHT11 // DHT 11
-#define LED_PIN D3    // Digital pin connected to the communication led
-#define LUXPIN D1     // Analog led connected to the photoresistor
+#define LED_PIN 14    // Digital pin connected to the communication led
+#define LUXPIN 16     // Analog led connected to the photoresistor
 
 /******************************************
 * Wifi/http setup 
 * 
 **/
+
+WiFiClient wifiClient;
 const char* ssid = "RollingPearl"; // Replace with your Wi-Fi network name
 const char* password = "Rolling1nTheWorld"; // Replace with your Wi-Fi network password
 const char* serverUrl = "http://192.0.0.112/sensors/"; // Replace with your Django server URL
@@ -92,16 +95,16 @@ void loop() {
 
   if (WiFi.status() == WL_CONNECTED) {
     HTTPClient http;
-    http.begin(serverUrl);
+    http.begin(wifiClient,serverUrl);
     http.addHeader("Content-Type", "application/json");
 
-    int httpResponseCode = http.POST(humidity_sensor + "&" + humidity);
-    int httpResponseCode = http.POST(temperature_sensor + "&" + temperature);
-    int httpResponseCode = http.POST(lux_sensor + "&" + photoResistorValue);
+    int httpResponseCodeT = http.POST(humidity_sensor + "&" + humidity);
+    int httpResponseCodeH = http.POST(temperature_sensor + "&" + temperature);
+    int httpResponseCodeL = http.POST(lux_sensor + "&" + photoResistorValue);
 
-    if (httpResponseCode > 0) {
+    if (httpResponseCodeT > 0) {
       Serial.print("HTTP response code: ");
-      Serial.println(httpResponseCode);
+      Serial.println(httpResponseCodeT);
       digitalWrite(LED_PIN, HIGH); 
       delay(100);
       digitalWrite(LED_PIN, LOW);
