@@ -6,6 +6,8 @@ Django project for monitoring plants and aquariums in a domotics system at home.
 
 List of sensor are available at: server_ip:8000/sensors/.
 
+![Current front page listing all sensors](overview.png)
+
 This project need a lot of work, one of them being to properly write this ReadME
 
 
