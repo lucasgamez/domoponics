@@ -69,7 +69,7 @@ def view_data_sensor_add(request):
 # sensor_id(int) : primary key of the sensor 
 def get_sensor_details(sensor_id):
     sensor = Sensor.objects.get(pk=sensor_id)
-    sensor.sensor_data = sensor.sensordata_set.order_by('timestamp')[:10]
+    sensor.sensor_data = sensor.sensordata_set.order_by('timestamp')
     for d in sensor.sensor_data:
         d.strftime = d.timestamp.strftime('%Y-%m-%d %H:%M')
     #get_plot_data(sensor)
