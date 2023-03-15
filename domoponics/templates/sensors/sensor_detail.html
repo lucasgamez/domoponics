@@ -3,6 +3,8 @@
 {% block title %}Sensor{% endblock %}
 
 {% block content %}
+{% component_js_dependencies %}
+{% component_css_dependencies %}
 <div class="content">
 
             <div class="block block-sensor">
@@ -12,7 +14,8 @@
                 <div class="block-content">{{ sensor.description}}</div>
                 <div class="block-content-">ID: {{sensor.pk}}</div>
                 <div class="block-content block-image">
-                    <img class="block-image" src="data:image/png;base64,{{sensor.image}}">
+                    {% component "graph" sensor=sensor %}
+                    
                 </div>
             </div>
 </div>

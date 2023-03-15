@@ -69,11 +69,14 @@ def view_data_sensor_add(request):
 # sensor_id(int) : primary key of the sensor 
 def get_sensor_details(sensor_id):
     sensor = Sensor.objects.get(pk=sensor_id)
-    sensor.sensor_data = sensor.sensordata_set.order_by('-timestamp')[:10]
-    get_plot_data(sensor)
+    sensor.sensor_data = sensor.sensordata_set.order_by('timestamp')[:10]
+    for d in sensor.sensor_data:
+        d.strftime = d.timestamp.strftime('%Y-%m-%d %H:%M')
+    #get_plot_data(sensor)
     return sensor
 
-# Return figure of data from a specific sensor, voir chart js
+# DEPRECATED:Return figure of data from a specific sensor, voir chart js
+# Html : <img class="block-image" src="data:image/png;base64,{{ foo }}">
 # sensor(request): return value of a get function for the dataset
 def get_plot_data(sensor):
     timestamps = [str(d.timestamp) for d in sensor.sensor_data]
