@@ -1,4 +1,5 @@
 from django_components import component
+from models.models import Sensor
 
 
 @component.register("graph")
@@ -8,13 +9,13 @@ class Graph(component.Component):
     template_name = "graph/graph.html"
 
     # This component takes one parameter, a date string to show in the template
-    def get_context_data(self, sensor):
+    def get_context_data(self, sensor: Sensor):
         return {
             "id": sensor.pk,
             "data": [d.data for d in sensor.sensor_data],
             "labels": [d.strftime for d in sensor.sensor_data],
-            "label": sensor.data_type,
-            "color": '#8fce00'
+            "label": sensor.dataType.unit,
+            "color": sensor.dataType.color
             
         }
 

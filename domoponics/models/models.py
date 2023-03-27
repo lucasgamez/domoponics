@@ -1,7 +1,29 @@
 from django.db import models
 from colorfield.fields import ColorField
 
-# Create your models here.
+##########################################
+# DataType is a preset type of data (Temperature, humidity ...). Class used for uniformisation of display
+# name: Name of the data type
+# unit: Unit used in the graph for short display
+# color: hexa code for the color to diplay
+class DataType(models.Model):
+    name = models.CharField(max_length=100)
+    unit = models.CharField(max_length=100)
+    color = ColorField(format="hexa")
+    def __str__(self):
+        return self.name
+
+##########################################
+# Device is the physical object on which sensors are connected, a device can have several sensor
+# name: Name of the data type
+# location: location of the device on the map
+# refresh: Refresh time in minute for sending new registered data
+class Device(models.Model):
+    name = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    refresh = models.IntegerField()
+    def __str__(self):
+        return self.name
 
 ##########################################
 # Sensor class is a class that represesnt a physical sensor. The sensor is linked 
@@ -10,9 +32,12 @@ from colorfield.fields import ColorField
 # description: Description of the sensor
 # name: name of the sensor
 class Sensor(models.Model):
-    dataType = models.CharField(max_length=100)
+    dataType = models.ForeignKey(DataType, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.TextField()
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
 
 ##########################################
 # SensorData class stores value registered by a sensor. The data-type of the value is retrieved with the sensor
@@ -26,23 +51,3 @@ class SensorData(models.Model):
 
     def __str__(self):
         return "{y: '"+ str(self.timestamp.strftime('%Y-%m-%d %H:%M:%S')) +"', X:" + str(self.data) +"}"
-
-##########################################
-# Device is the physical object on which sensors are connected, a device can have several sensor
-# name: Name of the data type
-# location: location of the device on the map
-# refresh: Refresh time in minute for sending new registered data
-class Device(models.Model):
-    name = models.CharField(max_length=100)
-    location = models.CharField(max_length=100)
-    refresh = models.IntegerField()
-
-##########################################
-# DataType is a preset type of data (Temperature, humidity ...). Class used for uniformisation of display
-# name: Name of the data type
-# unit: Unit used in the graph for short display
-# color: hexa code for the color to diplay
-class DataType(models.Model):
-    name = models.CharField(max_length=100)
-    unit = models.CharField(max_length=100)
-    color = ColorField(format="hexa")

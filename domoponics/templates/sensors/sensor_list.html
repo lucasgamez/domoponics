@@ -12,7 +12,7 @@
         {% for sensor in sensors %}
             <div class="block block-sensor">
                 <div class="block-title">
-                    <a href="{% url 'sensor_detail' sensor.pk %}">{{ sensor.location }}</a>
+                    <a href="{% url 'sensor_detail' sensor.pk %}">{{ sensor.name }}</a>
                 </div>
                 <div class="block-content block-image">
                     {% component "graph" sensor=sensor %}
