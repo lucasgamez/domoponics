@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "django_components",
+    'django_components',
+    'colorfield',
     'models',
     'sensors',
 ]
