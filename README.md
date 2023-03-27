@@ -18,11 +18,12 @@ This project need a lot of work, one of them being to properly write this ReadME
 ## ESP/Sensor
 * Improve luminosity reading
 ## Improvmenet of the dataset:
-* Add location and data_type as table, not as text
+* Add location ~~ and data_type as table, not as text ~~
 * Location table is linked to a map of the house
-* data_type table will enable to print uniformelly same type sensor (unit, color ...)
+* ~~ data_type table will enable to print uniformelly same type sensor (unit, color ...) ~~
 * Add push time to sensor to manage how often data are saved
-* Add ESP table, an esp can have several sensor
+* ~~ Add ESP table, an esp can have several sensor ~~
+
 ## Improve graph:
 * Limit graph data sent to front (especially to list sensors)
 * Add button to choose time scale
